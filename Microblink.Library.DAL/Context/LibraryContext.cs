@@ -9,6 +9,8 @@ namespace Microblink.Library.DAL.Context
 		public DbSet<User> Users => Set<User>();
 		public DbSet<UserContact> UserContacts => Set<UserContact>();
 		public DbSet<ContactType> ContactTypes => Set<ContactType>();
+		public DbSet<Book> Books => Set<Book>();
+		public DbSet<Reservation> Reservations => Set<Reservation>();
 
 		public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
 		{
@@ -21,6 +23,8 @@ namespace Microblink.Library.DAL.Context
 			modelBuilder.ApplyConfiguration(new ContactTypeConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 			modelBuilder.ApplyConfiguration(new UserContactConfiguration());
+			modelBuilder.ApplyConfiguration(new BookConfiguration());
+			modelBuilder.ApplyConfiguration(new ReservationConfiguration());
 		}
 	}
 }
