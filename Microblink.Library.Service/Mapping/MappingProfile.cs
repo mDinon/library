@@ -9,6 +9,9 @@ namespace Microblink.Library.Service.Mapping
 		public MappingProfile()
 		{
 			CreateMap<UserDto, User>();
+			CreateMap<User, UserDto>();
+			CreateMap<UserContact, UserContactDto>();
+			CreateMap<UserContactDto, UserContact>();
 		}
 	}
 }

@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using Microblink.Library.API.ViewModels.User.Request;
+using Microblink.Library.API.ViewModels.User.Response;
+using Microblink.Library.Service.Dtos;
 
 namespace Microblink.Library.API.Mapping
 {
@@ -12,7 +15,12 @@ namespace Microblink.Library.API.Mapping
 		/// </summary>
 		public MappingProfile()
 		{
-			
+			CreateMap<UserDto, UserResponseVm>();
+			CreateMap<UserContactDto, UserContactResponseVm>();
+			CreateMap<UserCreateRequestVm, UserDto>();
+			CreateMap<UserContactCreateRequestVm, UserContactDto>();
+			CreateMap<UserUpdateRequestVm, UserDto>();
+			CreateMap<UserContactUpdateRequestVm, UserContactDto>();
 		}
 	}
 }

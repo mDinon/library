@@ -2,6 +2,7 @@
 using Microblink.Library.DAL.Context;
 using Microblink.Library.Model.Entities;
 using Microblink.Library.Service.Dtos;
+using Microblink.Library.Service.Enums;
 using Microblink.Library.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,12 +16,14 @@ namespace Microblink.Library.Service
 		{
 		}
 
-		public async Task CreateUser(UserDto userDto)
+		public async Task<UserDto> CreateUser(UserDto userDto)
 		{
 			User user = mapper.Map<User>(userDto);
 
 			await libraryContext.AddAsync(user);
 			await libraryContext.SaveChangesAsync();
+
+			return mapper.Map<UserDto>(user);
 		}
 
 		public async Task DeleteUser(int id)
@@ -51,7 +54,7 @@ namespace Microblink.Library.Service
 					LastName = x.LastName,
 					UserContacts = x.UserContacts.Select(uc => new UserContactDto()
 					{
-						ContactTypeId = uc.ContactTypeId,
+						ContactType = (ContactTypeEnum)uc.ContactTypeId,
 						UserId = uc.UserId,
 						Value = uc.Value,
 						ContactTypeName = uc.ContactType.Name
@@ -71,7 +74,7 @@ namespace Microblink.Library.Service
 					LastName = x.LastName,
 					UserContacts = x.UserContacts.Select(uc => new UserContactDto()
 					{
-						ContactTypeId = uc.ContactTypeId,
+						ContactType = (ContactTypeEnum)uc.ContactTypeId,
 						UserId = uc.UserId,
 						Value = uc.Value,
 						ContactTypeName = uc.ContactType.Name
@@ -105,7 +108,7 @@ namespace Microblink.Library.Service
 
 			foreach (UserContactDto userContactDto in userDto.UserContacts)
 			{
-				if (userContactDto.Id.HasValue)
+				if (userContactDto.Id > 0)
 				{
 					UserContact? userContact = user.UserContacts.SingleOrDefault(x => x.Id == userContactDto.Id);
 
@@ -119,7 +122,7 @@ namespace Microblink.Library.Service
 				{
 					user.UserContacts.Add(new()
 					{
-						ContactTypeId = userContactDto.ContactTypeId,
+						ContactTypeId = (int)userContactDto.ContactType,
 						UserId = userContactDto.UserId,
 						Value = userContactDto.Value
 					});

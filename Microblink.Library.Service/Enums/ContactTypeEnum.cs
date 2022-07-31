@@ -1,6 +1,6 @@
 ﻿namespace Microblink.Library.Service.Enums
 {
-	public enum ContactType
+	public enum ContactTypeEnum
 	{
 		/// <summary>
 		/// Email address
