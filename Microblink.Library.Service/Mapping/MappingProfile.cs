@@ -11,7 +11,7 @@ namespace Microblink.Library.Service.Mapping
 			CreateMap<UserDto, User>();
 			CreateMap<User, UserDto>();
 			CreateMap<UserContact, UserContactDto>();
-			CreateMap<UserContactDto, UserContact>();
+			CreateMap<UserContactDto, UserContact>().ForMember(x => x.ContactType, opt => opt.Ignore());
 		}
 	}
 }

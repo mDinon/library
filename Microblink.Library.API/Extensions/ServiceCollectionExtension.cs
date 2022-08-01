@@ -5,6 +5,7 @@ using Microblink.Library.Service.Mapping;
 using Microblink.Library.Service.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace Microblink.Library.API.Extensions
 {
@@ -39,7 +40,9 @@ namespace Microblink.Library.API.Extensions
 		{
 			services.AddSwaggerGen(c =>
 			{
-				c.IncludeXmlComments("Microblink.Library.API.xml");
+				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+				c.IncludeXmlComments(xmlPath);
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Microblink.Library.API", Version = "v1" });
 			});
 

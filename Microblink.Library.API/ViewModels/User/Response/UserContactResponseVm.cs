@@ -16,9 +16,9 @@ namespace Microblink.Library.API.ViewModels.User.Response
 		/// </summary>
 		public int UserId { get; set; }
 		/// <summary>
-		/// Contact type property
+		/// Contact type id property
 		/// </summary>
-		public ContactTypeEnum ContactType { get; set; }
+		public ContactTypeEnum ContactTypeId { get; set; }
 		/// <summary>
 		/// Contact type name property
 		/// </summary>

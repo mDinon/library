@@ -35,6 +35,6 @@ namespace Microblink.Library.API.ViewModels.User.Request
 		/// User contacts collection
 		/// </summary>
 		[NotEmpty]
-		public IEnumerable<UserContactCreateRequestVm> UserContacts { get; set; } = null!;
+		public IEnumerable<UserContactUpdateRequestVm> UserContacts { get; set; } = null!;
 	}
 }

@@ -16,14 +16,14 @@ namespace Microblink.Library.Service
 		{
 		}
 
-		public async Task<UserDto> CreateUser(UserDto userDto)
+		public async Task<UserDto?> CreateUser(UserDto userDto)
 		{
 			User user = mapper.Map<User>(userDto);
 
 			await libraryContext.AddAsync(user);
 			await libraryContext.SaveChangesAsync();
 
-			return mapper.Map<UserDto>(user);
+			return await GetUser(user.Id.GetValueOrDefault());
 		}
 
 		public async Task DeleteUser(int id)
@@ -49,12 +49,14 @@ namespace Microblink.Library.Service
 				.AsNoTracking()
 				.Select(x => new UserDto()
 				{
+					Id = x.Id,
 					DateOfBirth = x.DateOfBirth,
 					FirstName = x.FirstName,
 					LastName = x.LastName,
 					UserContacts = x.UserContacts.Select(uc => new UserContactDto()
 					{
-						ContactType = (ContactTypeEnum)uc.ContactTypeId,
+						Id = uc.Id,
+						ContactTypeId = (ContactTypeEnum)uc.ContactTypeId,
 						UserId = uc.UserId,
 						Value = uc.Value,
 						ContactTypeName = uc.ContactType.Name
@@ -69,12 +71,14 @@ namespace Microblink.Library.Service
 				.AsNoTracking()
 				.Select(x => new UserDto()
 				{
+					Id = x.Id,
 					DateOfBirth = x.DateOfBirth,
 					FirstName = x.FirstName,
 					LastName = x.LastName,
 					UserContacts = x.UserContacts.Select(uc => new UserContactDto()
 					{
-						ContactType = (ContactTypeEnum)uc.ContactTypeId,
+						Id = uc.Id,
+						ContactTypeId = (ContactTypeEnum)uc.ContactTypeId,
 						UserId = uc.UserId,
 						Value = uc.Value,
 						ContactTypeName = uc.ContactType.Name
@@ -97,12 +101,14 @@ namespace Microblink.Library.Service
 			user.DateOfBirth = userDto.DateOfBirth;
 			user.FirstName = userDto.FirstName;
 			user.LastName = userDto.LastName;
+			user.DateModified = DateTime.Now;
 
 			foreach (UserContact userContact in user.UserContacts)
 			{
 				if (!userDto.UserContacts.Any(x => x.Id == userContact.Id))
 				{
 					userContact.IsDeleted = true;
+					userContact.DateModified = DateTime.Now;
 				}
 			}
 
@@ -122,12 +128,14 @@ namespace Microblink.Library.Service
 				{
 					user.UserContacts.Add(new()
 					{
-						ContactTypeId = (int)userContactDto.ContactType,
+						ContactTypeId = (int)userContactDto.ContactTypeId,
 						UserId = userContactDto.UserId,
 						Value = userContactDto.Value
 					});
 				}
 			}
+
+			await libraryContext.SaveChangesAsync();
 		}
 
 		#endregion

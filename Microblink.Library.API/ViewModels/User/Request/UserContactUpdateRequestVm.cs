@@ -1,4 +1,5 @@
-﻿using Microblink.Library.Service.Enums;
+﻿using Microblink.Library.API.ValidationAttributes;
+using Microblink.Library.Service.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Microblink.Library.API.ViewModels.User.Request
@@ -15,8 +16,8 @@ namespace Microblink.Library.API.ViewModels.User.Request
 		/// <summary>
 		/// Contact type property
 		/// </summary>
-		[Required]
-		public ContactTypeEnum ContactType { get; set; }
+		[RequiredEnum(ErrorMessage = "The ContactType field is required or has incorrect value.")]
+		public ContactTypeEnum ContactTypeId { get; set; }
 		/// <summary>
 		/// Value property
 		/// </summary>

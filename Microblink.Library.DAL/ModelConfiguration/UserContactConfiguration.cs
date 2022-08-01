@@ -13,6 +13,34 @@ namespace Microblink.Library.DAL.ModelConfiguration
 			builder.Property(x => x.UserId).IsRequired();
 			builder.Property(x => x.ContactTypeId).IsRequired();
 			builder.Property(x => x.Value).IsRequired().HasMaxLength(255);
+			builder.HasData(
+				new UserContact()
+				{
+					Id = 1,
+					DateCreated = DateTime.Now,
+					ContactTypeId = 1,
+					UserId = 1,
+					Value = "test.test@test.test",
+					IsDeleted = false
+				},
+				new UserContact()
+				{
+					Id = 2,
+					DateCreated = DateTime.Now,
+					ContactTypeId = 2,
+					UserId = 1,
+					Value = "+385987456123",
+					IsDeleted = false
+				},
+				new UserContact()
+				{
+					Id = 3,
+					DateCreated = DateTime.Now,
+					ContactTypeId = 3,
+					UserId = 1,
+					Value = "011234567",
+					IsDeleted = false
+				});
 		}
 	}
 }

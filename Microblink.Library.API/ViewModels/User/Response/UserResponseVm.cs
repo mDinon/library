@@ -8,7 +8,7 @@
 		/// <summary>
 		/// Id property
 		/// </summary>
-		public int? Id { get; set; }
+		public int Id { get; set; }
 		/// <summary>
 		/// First name property
 		/// </summary>

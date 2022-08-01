@@ -6,7 +6,7 @@ namespace Microblink.Library.Model.Entities
 	{
 		[ForeignKey("User")]
 		public int UserId { get; set; }
-		[ForeignKey("ContactType")]
+		[ForeignKey("ContactTypeId")]
 		public int ContactTypeId { get; set; }
 		public string Value { get; set; } = string.Empty;
 

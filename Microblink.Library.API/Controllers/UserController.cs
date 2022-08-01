@@ -60,7 +60,7 @@ namespace Microblink.Library.API.Controllers
 		/// <summary>
 		/// Get user by id.
 		/// </summary>
-		/// <param name="id">Measure identifier.</param>
+		/// <param name="id">User identifier.</param>
 		/// <returns>A 200 Ok response containing user.</returns>
 		/// <response code="200">Ok.</response>
 		/// <response code="404">Not found.</response>
@@ -88,7 +88,7 @@ namespace Microblink.Library.API.Controllers
 		/// <summary>
 		/// Create user.
 		/// </summary>
-		/// <param name="userCreateRequest"><see cref="UserCreateRequestVm"/>User create request object.</param>
+		/// <param name="userCreateRequest"><see cref="UserCreateRequestVm"/> User create request object.</param>
 		/// <returns>A 201 Created response.</returns>
 		/// <response code="201">Created.</response>
 		/// <response code="400">Bad request.</response>
@@ -108,12 +108,12 @@ namespace Microblink.Library.API.Controllers
 
 		#endregion
 
-		#region Create
+		#region Update
 
 		/// <summary>
-		/// Create user.
+		/// Update user.
 		/// </summary>
-		/// <param name="userUpdateRequest"><see cref="UserUpdateRequestVm"/>User update request object.</param>
+		/// <param name="userUpdateRequest"><see cref="UserUpdateRequestVm"/> User update request object.</param>
 		/// <returns>A 204 No content response.</returns>
 		/// <response code="204">No content.</response>
 		/// <response code="400">Bad request.</response>
