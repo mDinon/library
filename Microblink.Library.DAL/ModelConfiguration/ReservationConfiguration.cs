@@ -19,35 +19,35 @@ namespace Microblink.Library.DAL.ModelConfiguration
 				new Reservation()
 				{
 					Id = 1,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					BookId = 2,
 					UserId = 1,
 					IsReservationActive = true,
-					ReservationDateStart = DateTime.Now.Date,
-					ReservationDueDate = DateTime.Now.Date.AddDays(10),
+					ReservationDateStart = new DateTime(2022, 8, 2).Date,
+					ReservationDueDate = new DateTime(2022, 8, 2).Date.AddDays(20),
 					IsDeleted = false
 				},
 				new Reservation()
 				{
 					Id = 2,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					BookId = 3,
 					UserId = 1,
 					IsReservationActive = false,
-					ReservationDateStart = DateTime.Now.Date.AddDays(-15),
-					ReservationDueDate = DateTime.Now.Date.AddDays(-5),
-					ReservationDateEnd = DateTime.Now.Date.AddDays(-10),
+					ReservationDateStart = new DateTime(2022, 8, 2).Date.AddDays(-15),
+					ReservationDueDate = new DateTime(2022, 8, 2).Date.AddDays(-5),
+					ReservationDateEnd = new DateTime(2022, 8, 2).Date.AddDays(-10),
 					IsDeleted = false
 				},
 				new Reservation()
 				{
 					Id = 3,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					BookId = 1,
 					UserId = 1,
 					IsReservationActive = true,
-					ReservationDateStart = DateTime.Now.Date.AddDays(-15),
-					ReservationDueDate = DateTime.Now.Date.AddDays(-5),
+					ReservationDateStart = new DateTime(2022, 8, 2).Date.AddDays(-15),
+					ReservationDueDate = new DateTime(2022, 8, 2).Date.AddDays(-5),
 					IsDeleted = false
 				});
 		}

@@ -22,7 +22,7 @@ namespace Microblink.Library.DAL.Migrations
                     Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Author = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     TotalCopies = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "0"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(getdate())"),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -38,8 +38,8 @@ namespace Microblink.Library.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "0"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(getdate())"),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -57,8 +57,8 @@ namespace Microblink.Library.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "Date", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "0"),
+                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(getdate())"),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -80,7 +80,7 @@ namespace Microblink.Library.DAL.Migrations
                     ReservationDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReservationDateEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsReservationActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "0"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(getdate())"),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -113,7 +113,7 @@ namespace Microblink.Library.DAL.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ContactTypeId = table.Column<int>(type: "int", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValueSql: "0"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true, defaultValueSql: "(getdate())"),
                     DateModified = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -139,51 +139,51 @@ namespace Microblink.Library.DAL.Migrations
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "Books",
-                columns: new[] { "ID", "Author", "DateCreated", "DateModified", "Title", "TotalCopies" },
+                columns: new[] { "ID", "Author", "DateCreated", "DateModified", "IsDeleted", "Title", "TotalCopies" },
                 values: new object[,]
                 {
-                    { 1, "J. K. Rowling", new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4316), null, "Harry Potter and the Philosopher's Stone", 10 },
-                    { 2, "Frank Herbert", new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4325), null, "Dune", 3 },
-                    { 3, "J. R. R. Tolkien", new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4327), null, "The Lord of the Rings", 13 }
+                    { 1, "J. K. Rowling", new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Harry Potter and the Philosopher's Stone", 10 },
+                    { 2, "Frank Herbert", new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Dune", 3 },
+                    { 3, "J. R. R. Tolkien", new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "The Lord of the Rings", 13 }
                 });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "ContactTypes",
-                columns: new[] { "Id", "DateCreated", "DateModified", "Name" },
+                columns: new[] { "Id", "DateCreated", "DateModified", "IsDeleted", "Name" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2217), null, "Email" },
-                    { 2, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2244), null, "Mobile" },
-                    { 3, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2246), null, "Telephone" }
+                    { 1, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Email" },
+                    { 2, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Mobile" },
+                    { 3, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Telephone" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "Users",
-                columns: new[] { "ID", "DateCreated", "DateModified", "DateOfBirth", "FirstName", "LastName" },
-                values: new object[] { 1, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2952), null, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test", "Testić" });
+                columns: new[] { "ID", "DateCreated", "DateModified", "DateOfBirth", "FirstName", "IsDeleted", "LastName" },
+                values: new object[] { 1, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test", false, "Testić" });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "Reservations",
-                columns: new[] { "ID", "BookId", "DateCreated", "DateModified", "IsReservationActive", "ReservationDateEnd", "ReservationDateStart", "ReservationDueDate", "UserId" },
+                columns: new[] { "ID", "BookId", "DateCreated", "DateModified", "IsDeleted", "IsReservationActive", "ReservationDateEnd", "ReservationDateStart", "ReservationDueDate", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4977), null, true, null, new DateTime(2022, 8, 1, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 8, 11, 0, 0, 0, 0, DateTimeKind.Local), 1 },
-                    { 2, 3, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4989), null, false, new DateTime(2022, 7, 22, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 7, 17, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 7, 27, 0, 0, 0, 0, DateTimeKind.Local), 1 },
-                    { 3, 1, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4995), null, true, null, new DateTime(2022, 7, 17, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2022, 7, 27, 0, 0, 0, 0, DateTimeKind.Local), 1 }
+                    { 1, 2, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, true, null, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, 3, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, false, new DateTime(2022, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 3, 1, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, true, null, new DateTime(2022, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 }
                 });
 
             migrationBuilder.InsertData(
                 schema: "dbo",
                 table: "UserContacts",
-                columns: new[] { "ID", "ContactTypeId", "DateCreated", "DateModified", "UserId", "Value" },
+                columns: new[] { "ID", "ContactTypeId", "DateCreated", "DateModified", "IsDeleted", "UserId", "Value" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(3699), null, 1, "test.test@test.test" },
-                    { 2, 2, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(3707), null, 1, "+385987456123" },
-                    { 3, 3, new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(3709), null, 1, "011234567" }
+                    { 1, 1, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, 1, "test.test@test.test" },
+                    { 2, 2, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, 1, "+385987456123" },
+                    { 3, 3, new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, 1, "011234567" }
                 });
 
             migrationBuilder.CreateIndex(

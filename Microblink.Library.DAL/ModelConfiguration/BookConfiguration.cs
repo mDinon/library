@@ -17,7 +17,7 @@ namespace Microblink.Library.DAL.ModelConfiguration
 				new Book()
 				{
 					Id = 1,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					Title = "Harry Potter and the Philosopher's Stone",
 					Author = "J. K. Rowling",
 					TotalCopies = 10,
@@ -26,7 +26,7 @@ namespace Microblink.Library.DAL.ModelConfiguration
 				new Book()
 				{
 					Id = 2,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					Title = "Dune",
 					Author = "Frank Herbert",
 					TotalCopies = 3,
@@ -35,7 +35,7 @@ namespace Microblink.Library.DAL.ModelConfiguration
 				new Book()
 				{
 					Id = 3,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					Title = "The Lord of the Rings",
 					Author = "J. R. R. Tolkien",
 					TotalCopies = 13,

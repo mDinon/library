@@ -11,7 +11,7 @@ namespace Microblink.Library.DAL.ModelConfiguration
 			builder.HasQueryFilter(x => !x.IsDeleted);
 			builder.Property(x => x.DateCreated).HasDefaultValueSql("(getdate())").ValueGeneratedOnAdd();
 			builder.Property(x => x.DateModified);
-			builder.Property(x => x.IsDeleted).HasDefaultValueSql("0");
+			builder.Property(x => x.IsDeleted);
 		}
 	}
 }

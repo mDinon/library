@@ -12,13 +12,13 @@ namespace Microblink.Library.DAL.ModelConfiguration
 			builder.Property(x => x.Id).HasColumnName("ID");
 			builder.Property(x => x.FirstName).IsRequired().HasMaxLength(255);
 			builder.Property(x => x.LastName).IsRequired().HasMaxLength(255);
-			builder.Property(x => x.DateOfBirth).IsRequired().HasColumnType("Date");
+			builder.Property(x => x.DateOfBirth).IsRequired().HasColumnType("date");
 			builder.HasData(
 				new User()
 				{
 					Id = 1,
-					DateCreated = DateTime.Now,
-					DateOfBirth = new DateTime(2000,1,1),
+					DateCreated = new DateTime(2022, 8, 2),
+					DateOfBirth = new DateTime(2000, 1, 1),
 					FirstName = "Test",
 					LastName = "Testić",
 					IsDeleted = false

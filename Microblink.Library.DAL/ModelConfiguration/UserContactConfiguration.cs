@@ -17,7 +17,7 @@ namespace Microblink.Library.DAL.ModelConfiguration
 				new UserContact()
 				{
 					Id = 1,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					ContactTypeId = 1,
 					UserId = 1,
 					Value = "test.test@test.test",
@@ -26,7 +26,7 @@ namespace Microblink.Library.DAL.ModelConfiguration
 				new UserContact()
 				{
 					Id = 2,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					ContactTypeId = 2,
 					UserId = 1,
 					Value = "+385987456123",
@@ -35,7 +35,7 @@ namespace Microblink.Library.DAL.ModelConfiguration
 				new UserContact()
 				{
 					Id = 3,
-					DateCreated = DateTime.Now,
+					DateCreated = new DateTime(2022, 8, 2),
 					ContactTypeId = 3,
 					UserId = 1,
 					Value = "011234567",

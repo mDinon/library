@@ -60,7 +60,7 @@ namespace Microblink.Library.API.Controllers
 		/// <summary>
 		/// Get user by id.
 		/// </summary>
-		/// <param name="id">User identifier.</param>
+		/// <param name="id"> User identifier.</param>
 		/// <returns>A 200 Ok response containing user.</returns>
 		/// <response code="200">Ok.</response>
 		/// <response code="404">Not found.</response>
@@ -101,9 +101,9 @@ namespace Microblink.Library.API.Controllers
 
 			UserDto user = mapper.Map<UserDto>(userCreateRequest);
 
-			UserDto newUser = await userService.CreateUser(user);
+			UserDto? newUser = await userService.CreateUser(user);
 
-			return CreatedAtAction(nameof(Get), new { id = newUser.Id }, mapper.Map<UserResponseVm>(newUser));
+			return CreatedAtAction(nameof(Get), new { id = newUser?.Id }, mapper.Map<UserResponseVm>(newUser));
 		}
 
 		#endregion
@@ -149,7 +149,7 @@ namespace Microblink.Library.API.Controllers
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		public async Task<IActionResult> Delete(int id)
 		{
-			logger.LogInformation("Pokrenuta deaktivacija natječaja za id: {Id}", id);
+			logger.LogInformation("Deleting user id: {Id}", id);
 
 			await userService.DeleteUser(id);
 

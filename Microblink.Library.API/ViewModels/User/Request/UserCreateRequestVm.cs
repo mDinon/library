@@ -24,6 +24,7 @@ namespace Microblink.Library.API.ViewModels.User.Request
 		/// Date of birth property
 		/// </summary>
 		[Required]
+		[DataType(DataType.Date)]
 		public DateTime? DateOfBirth { get; set; }
 
 		/// <summary>

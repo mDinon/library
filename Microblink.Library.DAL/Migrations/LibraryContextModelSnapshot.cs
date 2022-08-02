@@ -46,9 +46,7 @@ namespace Microblink.Library.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("0");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -67,7 +65,7 @@ namespace Microblink.Library.DAL.Migrations
                         {
                             Id = 1,
                             Author = "J. K. Rowling",
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4316),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Title = "Harry Potter and the Philosopher's Stone",
                             TotalCopies = 10
@@ -76,7 +74,7 @@ namespace Microblink.Library.DAL.Migrations
                         {
                             Id = 2,
                             Author = "Frank Herbert",
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4325),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Title = "Dune",
                             TotalCopies = 3
@@ -85,7 +83,7 @@ namespace Microblink.Library.DAL.Migrations
                         {
                             Id = 3,
                             Author = "J. R. R. Tolkien",
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4327),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Title = "The Lord of the Rings",
                             TotalCopies = 13
@@ -109,13 +107,12 @@ namespace Microblink.Library.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("0");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -125,21 +122,21 @@ namespace Microblink.Library.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2217),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Email"
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2244),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Mobile"
                         },
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2246),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Telephone"
                         });
@@ -166,9 +163,7 @@ namespace Microblink.Library.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("0");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsReservationActive")
                         .HasColumnType("bit");
@@ -198,34 +193,34 @@ namespace Microblink.Library.DAL.Migrations
                         {
                             Id = 1,
                             BookId = 2,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4977),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             IsReservationActive = true,
-                            ReservationDateStart = new DateTime(2022, 8, 1, 0, 0, 0, 0, DateTimeKind.Local),
-                            ReservationDueDate = new DateTime(2022, 8, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            ReservationDateStart = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReservationDueDate = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
                             BookId = 3,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4989),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             IsReservationActive = false,
-                            ReservationDateEnd = new DateTime(2022, 7, 22, 0, 0, 0, 0, DateTimeKind.Local),
-                            ReservationDateStart = new DateTime(2022, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            ReservationDueDate = new DateTime(2022, 7, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            ReservationDateEnd = new DateTime(2022, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReservationDateStart = new DateTime(2022, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReservationDueDate = new DateTime(2022, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
                         new
                         {
                             Id = 3,
                             BookId = 1,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(4995),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             IsReservationActive = true,
-                            ReservationDateStart = new DateTime(2022, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            ReservationDueDate = new DateTime(2022, 7, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            ReservationDateStart = new DateTime(2022, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReservationDueDate = new DateTime(2022, 7, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         });
                 });
@@ -248,7 +243,7 @@ namespace Microblink.Library.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("Date");
+                        .HasColumnType("date");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -256,9 +251,7 @@ namespace Microblink.Library.DAL.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("0");
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -273,7 +266,7 @@ namespace Microblink.Library.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(2952),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateOfBirth = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Test",
                             IsDeleted = false,
@@ -302,9 +295,7 @@ namespace Microblink.Library.DAL.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValueSql("0");
+                        .HasColumnType("bit");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -327,7 +318,7 @@ namespace Microblink.Library.DAL.Migrations
                         {
                             Id = 1,
                             ContactTypeId = 1,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(3699),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             UserId = 1,
                             Value = "test.test@test.test"
@@ -336,7 +327,7 @@ namespace Microblink.Library.DAL.Migrations
                         {
                             Id = 2,
                             ContactTypeId = 2,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(3707),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             UserId = 1,
                             Value = "+385987456123"
@@ -345,7 +336,7 @@ namespace Microblink.Library.DAL.Migrations
                         {
                             Id = 3,
                             ContactTypeId = 3,
-                            DateCreated = new DateTime(2022, 8, 1, 21, 21, 53, 439, DateTimeKind.Local).AddTicks(3709),
+                            DateCreated = new DateTime(2022, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             UserId = 1,
                             Value = "011234567"
