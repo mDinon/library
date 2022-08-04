@@ -6,11 +6,15 @@ namespace Microblink.Library.DAL.Context
 {
 	public class LibraryContext : DbContext
 	{
-		public DbSet<User> Users => Set<User>();
-		public DbSet<UserContact> UserContacts => Set<UserContact>();
-		public DbSet<ContactType> ContactTypes => Set<ContactType>();
-		public DbSet<Book> Books => Set<Book>();
-		public DbSet<Reservation> Reservations => Set<Reservation>();
+		public virtual DbSet<User> Users => Set<User>();
+		public virtual DbSet<UserContact> UserContacts => Set<UserContact>();
+		public virtual DbSet<ContactType> ContactTypes => Set<ContactType>();
+		public virtual DbSet<Book> Books => Set<Book>();
+		public virtual DbSet<Reservation> Reservations => Set<Reservation>();
+
+		public LibraryContext()
+		{
+		}
 
 		public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
 		{

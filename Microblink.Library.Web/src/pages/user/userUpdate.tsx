@@ -1,15 +1,17 @@
 import { UserInterface } from "interfaces/user/user";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useContext } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import config from "config.json";
 import { HttpRequest } from "services";
 import { UserCreateOrUpdate } from "components/user/UserCreateOrUpdate";
 import { toast } from "react-toastify";
+import { AppContext } from "App";
 
 export const UserUpdate = () => {
   const params = useParams();
   const { apiUrl } = config;
   const apiEndpoint = apiUrl + "/user";
+  const { setLoading } = useContext(AppContext);
   const emptyUser = (): UserInterface => {
     return {
       id: 0,
@@ -23,28 +25,34 @@ export const UserUpdate = () => {
   const navigate = useNavigate();
 
   const getUser = useCallback(() => {
+    setLoading(true);
     HttpRequest.GET(`${apiEndpoint}/${params.id}`).subscribe({
       next: (response) => {
         setUser(response);
+        setLoading(false);
       },
       error: (error: any) => {
         toast.error("An error has occured!");
+        setLoading(false);
         navigate("/user");
       },
     });
-  }, [apiEndpoint, params.id, navigate]);
+  }, [apiEndpoint, params.id, navigate, setLoading]);
 
   useEffect(() => {
     getUser();
   }, [getUser]);
 
   function handleConfirm() {
+    setLoading(true);
     HttpRequest.PUT(apiEndpoint, user).subscribe({
       next: (response) => {
         toast.success("User successfully updated!");
+        setLoading(false);
       },
       error: (error: any) => {
         toast.error("An error has occured!");
+        setLoading(false);
       },
     });
   }

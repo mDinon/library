@@ -1,10 +1,11 @@
 import { ContactType, UserInterface } from "interfaces/user/user";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { HttpRequest } from "services";
 import config from "config.json";
 import { Card, ListGroup } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { AppContext } from "App";
 
 export const UserDetails = () => {
   const params = useParams();
@@ -12,22 +13,26 @@ export const UserDetails = () => {
   const apiEndpoint = apiUrl + "/user";
   const [user, setUser] = useState({} as UserInterface);
   const navigate = useNavigate();
+  const { setLoading } = useContext(AppContext);
 
   const toUserEdit = () => {
     navigate(`/user/edit/${user.id}`, { state: { user } });
   };
 
   const getUser = useCallback(() => {
+    setLoading(true);
     HttpRequest.GET(`${apiEndpoint}/${params.id}`).subscribe({
       next: (response) => {
         setUser(response);
+        setLoading(true);
       },
       error: (error: any) => {
         toast.error("An error has occured!");
+        setLoading(false);
         navigate("/user");
       },
     });
-  }, [apiEndpoint, params.id, navigate]);
+  }, [apiEndpoint, params.id, navigate, setLoading]);
 
   useEffect(() => {
     getUser();
