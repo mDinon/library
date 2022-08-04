@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { appRoutes } from "routes";
+import { NavigationService } from "services";
+import { AppContext as AC } from "interfaces";
+import { toast, ToastContainer, ToastOptions } from "react-toastify";
+import { Footer, Header, Loader } from "components";
 
-function App() {
+export const AppContext = React.createContext({} as AC);
+
+export const App = () => {
+  const [loading, setLoading] = useState(false);
+
+  const showToast = (value: string, props?: ToastOptions) =>
+    toast(value, props);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <main className="container">
+        <AppContext.Provider value={{ loading, showToast, setLoading }}>
+          <BrowserRouter>
+            {NavigationService.generateRoutes(appRoutes)}
+          </BrowserRouter>
+        </AppContext.Provider>
+        {/* <Footer /> */}
+      </main>
+      <Footer />
+      <ToastContainer />
+      <Loader show={loading} />
+    </>
   );
-}
-
-export default App;
+};
