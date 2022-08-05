@@ -6,6 +6,7 @@ import {
 } from "interfaces/user/user";
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 interface UserProps {
   user: UserInterface;
@@ -25,7 +26,8 @@ export const UserCreateOrUpdate = ({
 
   const submit = (e: any) => {
     e.preventDefault();
-    onConfirm();
+    if (user.userContacts.length) onConfirm();
+    else toast.error("User must have at least one contact information!");
   };
 
   const addContact = (contactItem: UserContactInterface) => {
@@ -73,12 +75,15 @@ export const UserCreateOrUpdate = ({
         <Form.Label>First name</Form.Label>
         <Form.Control
           type="text"
+          name="firstName"
           placeholder="Enter first name"
           value={user.firstName}
           onChange={(e) => {
             e.persist();
             onUserChange({ ...user, firstName: e.target.value });
           }}
+          required
+          maxLength={255}
         />
       </Form.Group>
       <Form.Group className="mb-3 w-50" controlId="userLastName">
@@ -86,11 +91,14 @@ export const UserCreateOrUpdate = ({
         <Form.Control
           type="text"
           placeholder="Enter last name"
+          name="lastName"
           value={user.lastName}
           onChange={(e) => {
             e.persist();
             onUserChange({ ...user, lastName: e.target.value });
           }}
+          required
+          maxLength={255}
         />
       </Form.Group>
       <Form.Group className="mb-3 w-25" controlId="userDateOfBirth">
@@ -98,10 +106,12 @@ export const UserCreateOrUpdate = ({
         <Form.Control
           type="date"
           value={dayjs(user.dateOfBirth).format("YYYY-MM-DD")}
+          name="dateOfBirth"
           onChange={(e) => {
             e.persist();
             onUserChange({ ...user, dateOfBirth: new Date(e.target.value) });
           }}
+          required
         />
       </Form.Group>
       <hr />
@@ -133,6 +143,8 @@ export const UserCreateOrUpdate = ({
               name="value"
               value={uc.value}
               onChange={updateUserContactItem(index)}
+              required
+              maxLength={255}
             />
             <span
               className="p-2"
