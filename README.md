@@ -20,6 +20,10 @@ Možemo ga koristiti ako želimo ili vidimo potrebnu da jednog dana zamijenimo O
 Prednost korištenja DbContexta direktno u servisnom sloju je mogućnost projiciranja direktno u DTO i s time postižemo bolje performanse. Projekcije su moguće i s Repository patternom, ali bi mogli imati puno metoda u pojedinim repozitorijima i dodavali nepotreban overhead.
 Ako bi se išlo u implementaciju tih patterna onda bi se trebao kreirati abstraktni RepositoryBase s generičkim metodama. Zatim da bi izbjegli definiranje svih dodatnih repozitorija u UoW klasi možemo dodati repository dictionary i metodu kojom bismo pojedini repozitorij ovisno o entitetu.
 
+Korišten je code first pristup i kreirane su model configuration klase za svaki entitet u kojima se nalazi konfiguracija tablice i seedani podaci.
+
+Za logiranje se koristi Serilog, on mi se pokazao kao jednostavno rješenje za output logova u elastic stack pa njega koristim. Implementira je globalni exception handler kao middleware tako da se ne koriste try catch blokovi (osim u slučaju kada je potrebno uloviti exception i napraviti dodatnu obradu), za njega je samo potrebno dobro konfigurirati exceptione i status kodove koje vraća (eventualno kreirati custom exception klase koje bi koristili za neke validacije kao što sam dodao u ovom projektu ItemNotFoundException koji će vratit 404 not found).
+
 ## Upute za pokretanje
 
 1.  Otvoriti solution Microblink.Library u Visual Studiu.
