@@ -60,6 +60,12 @@ export const UserCreateOrUpdate = ({
     onChange(newState);
   };
 
+  const deleteContact = (index: number) => {
+    const newState = { ...user };
+    newState.userContacts = user.userContacts.filter((_, i) => i !== index);
+    onChange(newState);
+  };
+
   return (
     <Form onSubmit={submit}>
       <h3>Basic information</h3>
@@ -108,25 +114,35 @@ export const UserCreateOrUpdate = ({
       {user?.userContacts?.map((uc, index) => (
         <Form.Group key={index} className="mb-3" controlId="userContactType">
           <Form.Label>Contact item</Form.Label>
-          <Form.Select
-            size="sm"
-            className="w-25"
-            name="contactTypeId"
-            value={uc.contactTypeId}
-            onChange={updateUserContactItem(index)}
-          >
-            <option value={ContactType.EMAIL}>Email</option>
-            <option value={ContactType.MOBILE}>Mobile</option>
-            <option value={ContactType.TELEPHONE}>Telephone</option>
-          </Form.Select>
-          <Form.Control
-            className="w-50"
-            type="text"
-            placeholder="Enter contact info"
-            name="value"
-            value={uc.value}
-            onChange={updateUserContactItem(index)}
-          />
+          <div className="row">
+            <Form.Select
+              size="sm"
+              className="w-25"
+              name="contactTypeId"
+              value={uc.contactTypeId}
+              onChange={updateUserContactItem(index)}
+            >
+              <option value={ContactType.EMAIL}>Email</option>
+              <option value={ContactType.MOBILE}>Mobile</option>
+              <option value={ContactType.TELEPHONE}>Telephone</option>
+            </Form.Select>
+            <Form.Control
+              className="w-50 ms-2"
+              type="text"
+              placeholder="Enter contact info"
+              name="value"
+              value={uc.value}
+              onChange={updateUserContactItem(index)}
+            />
+            <span
+              className="p-2"
+              style={{ width: 30 }}
+              role="button"
+              onClick={() => deleteContact(index)}
+            >
+              <i className="bi bi-trash"></i>
+            </span>
+          </div>
         </Form.Group>
       ))}
       <Button variant="primary" type="submit">

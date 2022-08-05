@@ -24,7 +24,7 @@ export const UserDetails = () => {
     HttpRequest.GET(`${apiEndpoint}/${params.id}`).subscribe({
       next: (response) => {
         setUser(response);
-        setLoading(true);
+        setLoading(false);
       },
       error: (error: any) => {
         toast.error("An error has occured!");
