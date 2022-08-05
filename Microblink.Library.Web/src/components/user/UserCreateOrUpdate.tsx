@@ -138,7 +138,7 @@ export const UserCreateOrUpdate = ({
             </Form.Select>
             <Form.Control
               className="w-50 ms-2"
-              type="text"
+              type={uc.contactTypeId === ContactType.EMAIL ? "email" : "text"}
               placeholder="Enter contact info"
               name="value"
               value={uc.value}
